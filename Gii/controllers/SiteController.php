@@ -61,7 +61,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        echo Yii::getAlias('@meualias1');
+        // echo Yii::getAlias('@meualias1');
+        // chamada de parametros definidos
+        echo Yii::$app->params['endereco'];
 
         die;
         return $this->render('index');
