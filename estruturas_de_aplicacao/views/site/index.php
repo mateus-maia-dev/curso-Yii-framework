@@ -2,11 +2,28 @@
 
 /** @var yii\web\View $this */
 
+use app\classes\widgets\HelloWidget;
+use app\classes\widgets\HelloWorldBeginEndWidget;
+use yii\helpers\Html;
 use yii\jui\DatePicker;
 
 $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
+
+    <!-- importação de WIDGETS -->
+    <div>
+        <?= HelloWidget::widget([
+            'message' => 'Olá mundo!',
+            'submessage' => 'Olá mundo! Eu estou aqui!'
+        ]) ?>
+
+        <?php HelloWorldBeginEndWidget::begin() ?>
+        <h2>Curso de Yii 2 framework</h2>
+        <h3>Esse é mais puxado que o anterior</h3>
+
+        <?php HelloWorldBeginEndWidget::end() ?>
+    </div>
 
     <div>
         <?= DatePicker::widget([
