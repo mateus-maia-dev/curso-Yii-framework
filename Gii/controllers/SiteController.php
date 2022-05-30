@@ -61,6 +61,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        echo Yii::getAlias('@meualias1');
+
+        die;
         return $this->render('index');
     }
 

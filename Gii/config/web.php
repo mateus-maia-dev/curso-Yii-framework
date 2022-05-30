@@ -5,12 +5,21 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
+    //inserindo um name para a aplicação
+    'name' => 'Minha APlicação',
+    'version' => '2.5',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
+        '@meualias' => 'path/to/meu/alias1'
     ],
+    'language' => 'en',
+    'sourceLanguage' => 'pt-BR',
+    'timeZone' => 'America/Brasilia',
+    'charset' => 'UTF-8',
+    // prop catchALl usada mais em modo de manutenção
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
