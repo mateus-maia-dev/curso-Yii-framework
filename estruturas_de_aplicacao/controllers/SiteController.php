@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use Egulias\EmailValidator\Parser\PartParser;
 
 class SiteController extends Controller
 {
@@ -59,9 +60,27 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex($id, $name = null)
     {
-        return $this->render('index');
+        var_dump($id, $name);
+
+
+        // pego a instancia do meu componnent
+        $myComponent = Yii::$app->myComponent;
+
+        $myComponent->printString();
+
+        // buscar na documentação
+        // $this->renderAjax();
+        // $this->renderFile();
+        // $this->renderPartial();
+        // $this->renderContent();
+
+        // reenderizando a view enviando duas variáveis; nome e sobrenome
+        return $this->render('index', [
+            'nome' => 'Mateus',
+            'sobrenome' => 'Maia'
+        ]);
     }
 
     /**
@@ -126,3 +145,9 @@ class SiteController extends Controller
         return $this->render('about');
     }
 }
+
+// ROTAS => para qual controlador e action será direcionado
+// 2 ou 3 Partes
+// 2 partes => IdDoController/IdDoAction
+// 3 partes => IdDoModule/IdDoController/IdDoAction
+// htp://www.localhost.com?r=site/index

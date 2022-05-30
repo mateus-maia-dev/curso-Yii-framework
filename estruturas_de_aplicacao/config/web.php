@@ -16,6 +16,11 @@ $config = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'Ch7WzeRTIZHCi2HZs7la2bhNSLZOa0t5',
         ],
+        // component criado na aula #9
+        'myComponent' => [
+            'class' => 'app\classes\components\MyComponent',
+            'string' => 'Olá string! Estou te atribuindo umn valor'
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
