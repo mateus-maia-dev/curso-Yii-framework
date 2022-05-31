@@ -60,9 +60,9 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex($id, $name = null)
+    public function actionIndex()
     {
-        var_dump($id, $name);
+
 
 
         // pego a instancia do meu componnent
