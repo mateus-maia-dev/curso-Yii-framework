@@ -62,11 +62,12 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        // die;
+        // $contatos = new Contatos();
+        // $teste = $contatos->findOne(1);
+        // var_dump($teste);
 
-        $contatos = new Contatos();
-        $teste = $contatos->findOne(1);
-        var_dump($teste);
-        die;
+
         return $this->render('index');
     }
 
