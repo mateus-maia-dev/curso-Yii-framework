@@ -61,9 +61,58 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        // criar e adicionar os papeis para autenticação
+
+        $auth = Yii::$app->authManager;
+
+        $admin = $auth->createRole('administrador');
+        $supervisor = $auth->createRole('supervisor');
+        $operador = $auth->createRole('operador');
+
+        $auth->add($admin);
+        $auth->add($supervisor);
+        $auth->add($operador);
+
+        // criar permissões
+        $viewPost = $auth->createPermission('post-index');
+        $addPost = $auth->createPermission('post-create');
+        $editPost = $auth->createPermission('post-edit');
+        $deletePost = $auth->createPermission('post-delete');
+
+        // adicionando agora no gerenciamento de atualização
+        $auth->add($viewPost);
+        $auth->add($addPost);
+        $auth->add($editPost);
+        $auth->add($deletePost);
+
+        // concedendo permissões para cada papel
+        $auth->addChild($admin, $viewPost);
+        $auth->addChild($admin, $addPost);
+        $auth->addChild($admin, $editPost);
+        $auth->addChild($admin, $deletePost);
+
+        $auth->addChild($supervisor, $viewPost);
+        $auth->addChild($supervisor, $addPost);
+        $auth->addChild($supervisor, $editPost);
+
+        $auth->addChild($operador, $viewPost);
+
+        $auth->assign($admin, 1); // adm Mateus
+        $auth->assign($supervisor, 2); // Fernanda
+        $auth->assign($operador, 3);  // Manuel
+
         return $this->render('index');
     }
 
+    public function actionTestPermission($userID)
+    {
+        $auth = Yii::$app->authManager;
+
+        echo "<p>Visualizar Post: {$auth->checkAccess($userID, 'post-index')}</p>";
+        echo "<p>Editar Post: {$auth->checkAccess($userID, 'post-edit')}</p>";
+        echo "<p>Adicionar Post: {$auth->checkAccess($userID, 'post-add')}</p>";
+        echo "<p>Deletar Post: {$auth->checkAccess($userID, 'post-delete')}</p>";
+    }
     /**
      * Login action.
      *
