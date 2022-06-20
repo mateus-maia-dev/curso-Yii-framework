@@ -11,10 +11,27 @@ $this->title = "Mu Yii Application";
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
-            'id',
+            [
+                'attribute' => 'id',
+                'header' => 'Cód.',
+                'headerOptions' => [
+                    'style' => 'text-align: right; width: 70px;'
+                ],
+                'contentOptions' => [
+                    'style' => 'text-align: right;'
+                ]
+            ],
             'created_at',
-            'abbreviation',
-            'name'
+            [
+                'attribute' => 'name',
+                'content' => function (\app\models\Size $model, $key, $index, $column) {
+                    return $model->name . "({$model->abbreviation}) . $key . $index ";
+                }
+            ]
+
+
+            // 'abbreviation',
+            // 'name'
         ]
     ]); ?>
 </div>
