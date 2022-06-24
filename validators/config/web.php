@@ -32,6 +32,8 @@ $config = [
             // 'useFileTransport' to false and configure transport
             // for the mailer to send real emails.
             'useFileTransport' => true,
+
+            'language' => 'pt_BR'
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

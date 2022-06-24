@@ -65,6 +65,13 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionShop()
+    {
+        // se eu quero que apenas a página que eu criei, receba um layout  diferente
+        $this->layout = 'shop';
+        return $this->render('shop');
+    }
+
     /**
      * Login action.
      *
