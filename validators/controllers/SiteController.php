@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use yii\helpers\StringHelper;
 
 class SiteController extends Controller
 {
@@ -61,6 +62,15 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        // métodos de string no StringHelper
+        // var_dump(StringHelper::startsWith('Yii Academy', 'YII', false));
+        // var_dump(StringHelper::endsWith('teste Yii', 'teste'));
+        // var_dump(StringHelper::countWords("Mateus Maia Fonsecaa"));
+        // var_dump(StringHelper::truncate("A Volta dos que não foram", 5));
+        var_dump(StringHelper::truncateWords("A Volta dos que não foram", 5, ' #@*&$ '));
+
+        die;
+
         // aqui eu devo reenderizar a view cadastro.php
         return $this->render('index');
     }
