@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Client;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -38,6 +39,7 @@ class SiteController extends Controller
         ];
     }
 
+
     /**
      * {@inheritdoc}
      */
@@ -61,6 +63,19 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $client = new Client();
+
+        $client->name = 'João Sebastião';
+
+
+        if (!$client->save()) {
+            echo '<pre>';
+            print_r($client->getErrors());
+            die;
+        }
+
+        echo 'OK!';
+        die;
         return $this->render('index');
     }
 
