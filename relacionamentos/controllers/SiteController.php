@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Cargo;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -9,6 +10,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Funcionario;
 
 class SiteController extends Controller
 {
@@ -61,6 +63,35 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+
+        /** @var Cargo[] $cargos */
+        $cargos = Cargo::find()->all();
+
+        foreach ($cargos as $cargo) {
+            echo "<h2>";
+            echo $cargo->nome;
+
+            echo "<ul>";
+
+            foreach ($cargo->funcionarios as $func) {
+                echo "<li>{$func->nome}</li>";
+            }
+
+            echo "</ul>";
+            echo "</h2>";
+        }
+
+
+        // /** @var Funcionario[] $funcionarios */
+        // $funcionarios = Funcionario::find()->all();
+
+        // foreach ($funcionarios as $funcionario) {
+        //     echo "<h2>Nome: {$funcionario->nome} 
+        //             Cargo: {$funcionario->cargo->nome}
+        //     </h2>";
+        // }
+
+        die;
         return $this->render('index');
     }
 
