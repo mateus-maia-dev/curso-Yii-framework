@@ -64,6 +64,8 @@ class SiteController extends Controller
     public function actionIndex()
     {
 
+        // Buscando os funcionarios atraves de cargos
+
         /** @var Cargo[] $cargos */
         $cargos = Cargo::find()->all();
 
@@ -81,6 +83,8 @@ class SiteController extends Controller
             echo "</h2>";
         }
 
+
+        // Buscando os cargos atraves de funcionarios
 
         // /** @var Funcionario[] $funcionarios */
         // $funcionarios = Funcionario::find()->all();
