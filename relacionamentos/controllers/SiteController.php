@@ -12,6 +12,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Funcionario;
 use app\models\Pessoa;
+use app\models\Programador;
 
 class SiteController extends Controller
 {
@@ -64,6 +65,29 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        /** RELACIONAMENTO N:N */
+        /** @var Programador[] $programadores */
+        $programadores = Programador::find()->all();
+
+        foreach ($programadores as $programador) {
+            echo "<h2>";
+            echo $programador->nome;
+            echo $programador->nome . ' - ' . $programador->github;
+
+            echo "<ul>";
+            foreach ($programador->linguagens as $linguagem) {
+                echo "<li>{$linguagem->nome}</li>";
+            }
+            echo "</ul>";
+            echo "</h2>";
+        }
+
+
+
+
+
+
+        die;
         /** RELACIONAMENTO 1:1 */
 
         $pessoas = Pessoa::find()->all();
@@ -83,7 +107,7 @@ class SiteController extends Controller
         /** RELACIONAMENTO 1:N */
 
         // Buscando os funcionarios atraves de cargos
-        die;
+
         /** @var Cargo[] $cargos */
         $cargos = Cargo::find()->all();
 
