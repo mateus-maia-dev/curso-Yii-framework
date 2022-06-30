@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Funcionario;
+use app\models\Pessoa;
 
 class SiteController extends Controller
 {
@@ -63,9 +64,26 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        /** RELACIONAMENTO 1:1 */
+
+        $pessoas = Pessoa::find()->all();
+
+        foreach ($pessoas as $pessoa) {
+            echo "
+                <h2>
+                    Nome: {$pessoa->nome} |
+                    CPF: {$pessoa->pessoaFisica->cpf} |
+                    Sexo: {$pessoa->pessoaFisica->sexo} |
+                </h2>
+            
+            ";
+        }
+
+
+        /** RELACIONAMENTO 1:N */
 
         // Buscando os funcionarios atraves de cargos
-
+        die;
         /** @var Cargo[] $cargos */
         $cargos = Cargo::find()->all();
 
@@ -86,16 +104,16 @@ class SiteController extends Controller
 
         // Buscando os cargos atraves de funcionarios
 
-        // /** @var Funcionario[] $funcionarios */
-        // $funcionarios = Funcionario::find()->all();
+        /** @var Funcionario[] $funcionarios */
+        $funcionarios = Funcionario::find()->all();
 
-        // foreach ($funcionarios as $funcionario) {
-        //     echo "<h2>Nome: {$funcionario->nome} 
-        //             Cargo: {$funcionario->cargo->nome}
-        //     </h2>";
-        // }
+        foreach ($funcionarios as $funcionario) {
+            echo "<h2>Nome: {$funcionario->nome} 
+                    Cargo: {$funcionario->cargo->nome}
+            </h2>";
+        }
 
-        die;
+
         return $this->render('index');
     }
 
